@@ -10,14 +10,14 @@ const TimelineSidebar = () => {
   },[]);
 
   const onAnimation = () => {
+      // NOTE: 連続実行すると正しくアニメーションしなくなるので、ボタンを非活性にする処理が必要。
       const timeline = gsap.timeline();
       timeline
       .from('.item1', {opacity: 0, x: -50, duration: 0.2})
-      .from('.item1', {backgroundColor: 'red',color: 'red', duration: 1})
       .from('.item2', {opacity: 0, x: -50, duration: 0.3})
       .from('.item3', {opacity: 0, x: -50, duration: 0.5})
       .from('.item4', {opacity: 0, x: -50, duration: 0.5})
-      .from('.item5', {opacity: 0, x: -50, duration: 1})
+      .from('.item5', {opacity: 0, x: -50, duration: 0.3})
   }
 
   return (

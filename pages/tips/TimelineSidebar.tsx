@@ -1,28 +1,33 @@
 import {gsap} from 'gsap'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 
 const TimelineSidebar = () => {
+  // NOTE: 連続実行すると正しくアニメーションしなくなるので、ボタンを非活性にする処理が必要。
+  const [disable, setDisable] = useState(false);
+
+  // const [disable, setDisable] = React.useState(false);
   useEffect(() => {
     // NOTE:useEffectでgsap.fromを使うとアニメーションが止まる。。
     // onAnimation();
   },[]);
 
   const onAnimation = () => {
-      // NOTE: 連続実行すると正しくアニメーションしなくなるので、ボタンを非活性にする処理が必要。
+      setDisable(true);
       const timeline = gsap.timeline();
       timeline
       .from('.item1', {opacity: 0, x: -50, duration: 0.2})
       .from('.item2', {opacity: 0, x: -50, duration: 0.3})
       .from('.item3', {opacity: 0, x: -50, duration: 0.5})
       .from('.item4', {opacity: 0, x: -50, duration: 0.5})
-      .from('.item5', {opacity: 0, x: -50, duration: 0.3})
+      .from('.item5', {opacity: 0, x: -50, duration: 0.3, onComplete: () => { setDisable(false) }})
+
   }
 
   return (
     <div>
-      <Button variant="contained" onClick={onAnimation}>
+      <Button disabled={disable} variant="contained" onClick={onAnimation}>
         On Animation
         <PlayCircleFilledWhiteIcon style={{ color: "white", marginLeft: "10px" }} />
       </Button>

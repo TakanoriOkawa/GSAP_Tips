@@ -1,5 +1,7 @@
 import {gsap} from 'gsap'
 import { useEffect } from 'react';
+import Button from '@mui/material/Button';
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 
 const TimelineSidebar = () => {
   useEffect(() => {
@@ -20,7 +22,10 @@ const TimelineSidebar = () => {
 
   return (
     <div>
-      <button onClick={onAnimation}>OnAnimation</button>
+      <Button variant="contained" onClick={onAnimation}>
+        On Animation
+        <PlayCircleFilledWhiteIcon style={{ color: "white", marginLeft: "10px" }} />
+      </Button>
       <ul className='list'>
         <li className='item item1'>アイテム１</li>
         <li className='item item2'>アイテム２</li>
